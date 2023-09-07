@@ -1,4 +1,4 @@
-package main.ru.esipov;
+package esipov;
 
 public class Application {
     public static void main(String[] args) {
