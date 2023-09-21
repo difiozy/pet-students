@@ -1,0 +1,7 @@
+spring:
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    url: jdbc:postgresql://localhost:5432/PetProd
+    username: postgres
+    password: "s122134435"
+server.port: 8088
