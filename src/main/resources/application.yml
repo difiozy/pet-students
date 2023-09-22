@@ -1,0 +1,8 @@
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/postgres
+
+    #    jdbc:postgresql://localhost:5454/petprod
+    username: root
+    password: "123"
+server.port: 8088
