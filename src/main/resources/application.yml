@@ -1,7 +1,16 @@
 spring:
+  jpa:
+    database: POSTGRESQL
+    show-sql: true
+    hibernate:
+      ddl-auto: create-drop
   datasource:
     url: jdbc:postgresql://localhost:5432/postgres
     #    jdbc:postgresql://localhost:5454/petprod
     username: root
     password: "123"
+    driverClassName: org.postgresql.Driver
+  sql:
+    init:
+      platform: postgres
 server.port: 8088
