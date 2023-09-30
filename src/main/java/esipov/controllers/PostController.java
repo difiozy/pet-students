@@ -13,7 +13,7 @@ import esipov.model.Post;
 import esipov.repo.PostRepository;
 
 @RestController
-@RequestMapping("/api/v1/")
+@RequestMapping("/api/")
 public class PostController {
     @Autowired
     private PostRepository postRepository;
@@ -39,8 +39,7 @@ public class PostController {
     }
 
     // update post rest api
-
-    @PutMapping("/post/{id}")
+    @PutMapping("/posts/{id}")
     public ResponseEntity<Post> updatePost(@PathVariable Long id, @RequestBody Post postDetails){
         Post post = postRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("Post not exist with id :" + id));
@@ -55,7 +54,7 @@ public class PostController {
     }
 
     // delete post rest api
-    @DeleteMapping("/post/{id}")
+    @DeleteMapping("/posts/{id}")
     public ResponseEntity<Map<String, Boolean>> deletePost(@PathVariable Long id){
         Post post = postRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("post not exist with id :" + id));
