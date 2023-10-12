@@ -12,13 +12,13 @@ import esipov.model.Post;
 import esipov.repo.PostRepository;
 
 @RestController
-@RequestMapping("/api/")
+@RequestMapping("/api/v1/posts")
 public class PostController {
     @Autowired
     private PostRepository postRepository;
 
     // get all post
-    @GetMapping("/posts")
+    @GetMapping
     public List<Post> getAllPost() {
         return postRepository.findAll();
     }
@@ -33,13 +33,13 @@ public class PostController {
     }
 
     // create post rest api
-    @PostMapping("/posts")
+    @PostMapping
     public Post createPost(@RequestBody Post post) {
         return postRepository.save(post);
     }
 
     // get post by id rest api
-    @GetMapping("/posts/{id}")
+    @GetMapping("/{id}")
     public Post getPostById(@PathVariable Long id) {
         Post post = postRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("Post not exist with id :" + id));
@@ -47,7 +47,7 @@ public class PostController {
     }
 
     // update post rest api
-    @PutMapping("/posts/{id}")
+    @PutMapping("/{id}")
     public Post updatePost(@PathVariable Long id, @RequestBody Post postDetails){
         Post post = postRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("Post not exist with id :" + id));
@@ -62,21 +62,11 @@ public class PostController {
     }
 
     // delete post rest api
-    @DeleteMapping("/posts/{id}")
+    @DeleteMapping("/{id}")
     public Map<String, Boolean> deletePost(@PathVariable Long id){
         Post post = postRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("post not exist with id :" + id));
         postRepository.delete(post);
         return null;
     }
-
-/*
-    @GetMapping("/blog")
-    public String blogMain(Model model){
-        Iterable<Post> posts = postRepository.findAll();
-        model.addAttribute("posts", posts);
-        return "blog-main";
-    }
-
- */
 }
