@@ -23,6 +23,15 @@ public class PostController {
         return postRepository.findAll();
     }
 
+    @GetMapping("/c")
+    public void createTestPosts() {
+        Post post = new Post();
+        post.setTitle("TitleText");
+        post.setFull_text("FullTextasdfjslkdfskf");
+        post.setViews(102);
+        postRepository.save(post);
+    }
+
     // create post rest api
     @PostMapping("/posts")
     public Post createPost(@RequestBody Post post) {
