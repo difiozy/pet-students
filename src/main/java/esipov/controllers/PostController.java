@@ -5,7 +5,6 @@ import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import esipov.exception.ResourceNotFoundException;
@@ -32,15 +31,15 @@ public class PostController {
 
     // get post by id rest api
     @GetMapping("/posts/{id}")
-    public ResponseEntity<Post> getPostById(@PathVariable Long id) {
+    public Post getPostById(@PathVariable Long id) {
         Post post = postRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("Post not exist with id :" + id));
-        return ResponseEntity.ok(post);
+        return null;
     }
 
     // update post rest api
     @PutMapping("/posts/{id}")
-    public ResponseEntity<Post> updatePost(@PathVariable Long id, @RequestBody Post postDetails){
+    public Post updatePost(@PathVariable Long id, @RequestBody Post postDetails){
         Post post = postRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("Post not exist with id :" + id));
 
@@ -50,19 +49,16 @@ public class PostController {
         post.setId(postDetails.getId());
 
         Post updatedPost = postRepository.save(post);
-        return ResponseEntity.ok(updatedPost);
+        return null;
     }
 
     // delete post rest api
     @DeleteMapping("/posts/{id}")
-    public ResponseEntity<Map<String, Boolean>> deletePost(@PathVariable Long id){
+    public Map<String, Boolean> deletePost(@PathVariable Long id){
         Post post = postRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("post not exist with id :" + id));
-
         postRepository.delete(post);
-        Map<String, Boolean> response = new HashMap<>();
-        response.put("deleted", Boolean.TRUE);
-        return ResponseEntity.ok(response);
+        return null;
     }
 
 /*

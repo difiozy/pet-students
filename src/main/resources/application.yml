@@ -3,7 +3,8 @@ spring:
     database: POSTGRESQL
     show-sql: true
     hibernate:
-      ddl-auto: create-drop
+      ddl-auto: update
+    open-in-view: false
   datasource:
     url: jdbc:postgresql://localhost:5432/postgres
     #    jdbc:postgresql://localhost:5454/petprod
